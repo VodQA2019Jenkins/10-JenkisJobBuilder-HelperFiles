@@ -1,0 +1,5 @@
+jenkins-jobs --conf etc/jenkins_jobs/jenkins_jobs.ini update jobs/singlejob.yaml
+
+jenkins-jobs --conf etc/jenkins_jobs/jenkins_jobs.ini update jobs/singlejobtemplate.yaml
+
+jenkins-jobs --conf etc/jenkins_jobs/jenkins_jobs.ini update jobs/multiplejobtemplate.yaml

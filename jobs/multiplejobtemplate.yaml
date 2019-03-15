@@ -1,0 +1,49 @@
+- project:
+    name: 11-JJB-Temp
+    jobs:
+        - '11-JJB-Temp-{num}':
+            num: 1
+        - '11-JJB-Temp-{num}':
+            num: 2
+ 
+- job-template:
+    disabled_var:
+    command: 'df'
+    type: freestyle
+    
+    name: '11-JJB{num}FS'
+    id: '11-JJB-Temp-{num}'
+    scm:
+      - 11-JJB-Template
+    builders:
+      - maven-target:
+            maven-version: Maven3
+            pom: spring-boot-samples\spring-boot-sample-atmosphere\pom.xml
+            goals: clean compile package install test
+    publishers:
+      - archive:
+          artifacts: 'spring-boot-samples\spring-boot-sample-atmosphere\target\*.jar'
+          allow-empty: 'true'
+          fingerprint: true
+          default-excludes: false
+    description: 'Do not edit this job through the web!'
+    disabled: false
+    concurrent: true
+    quiet-period: 5
+    block-downstream: false
+    block-upstream: false
+    retry-count: 3
+    node: Agent1
+    logrotate:
+      daysToKeep: 3
+      numToKeep: 20
+      artifactDaysToKeep: -1
+      artifactNumToKeep: -1
+
+- scm:
+    name: 11-JJB-Template
+    scm:
+      - git:
+         url: https://github.com/VodQA2019Jenkins/9-Jenkins-Job-Builder.git
+         branches:
+          - master

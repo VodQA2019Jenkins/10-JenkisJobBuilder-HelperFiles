@@ -1,0 +1,8 @@
+- project:
+    name: 12-JJB-Template
+    jobs:
+        - '12-JJB-Template-{num}':
+            num: 1
+        - '12-JJB-Template-{num}':
+            num: 2
+ 
